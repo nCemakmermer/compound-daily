@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TikTok Authorization — Compound Daily</title>
+<style>
+  body { font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:#0a1020;
+         color:#e8eef7; text-align:center; padding:56px 20px; }
+  h2 { margin-bottom:.3em; }
+  p { color:#c4d0e0; }
+  code { display:block; background:#16203a; padding:18px; margin:22px auto; max-width:620px;
+         word-break:break-all; border-radius:10px; color:#7fe0a0; font-size:1.05rem; }
+  button { padding:12px 26px; font-size:1rem; background:#7fe0a0; color:#06210f; border:0;
+           border-radius:8px; cursor:pointer; font-weight:600; }
+  .err { color:#ff8080; }
+</style>
+</head>
+<body>
+  <h2>TikTok authorization code</h2>
+  <p>Copy this code and paste it back into the terminal:</p>
+  <code id="code">…</code>
+  <button onclick="navigator.clipboard.writeText(document.getElementById('code').textContent);this.textContent='Copied!'">Copy code</button>
+  <script>
+    var p = new URLSearchParams(location.search);
+    var code = p.get('code');
+    var el = document.getElementById('code');
+    if (code) { el.textContent = code; }
+    else { el.className = 'err'; el.textContent = 'No code returned. Error: ' + (p.get('error') || 'unknown') + ' ' + (p.get('error_description') || ''); }
+  </script>
+</body>
+</html>
